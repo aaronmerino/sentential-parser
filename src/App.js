@@ -25,10 +25,18 @@ class Tree extends React.Component {
       );
     });
 
+    if (children.length > 0) {
+      return (
+        <div className="Tree">
+          {this.props.currentNode.text}
+          <div>{children}</div>
+        </div>
+      );
+    }
+
     return (
       <div className="Tree">
         {this.props.currentNode.text}
-        <div>{children}</div>
       </div>
     );
   }
