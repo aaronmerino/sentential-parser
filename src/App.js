@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+import { Expression } from './expression.js';
 
 class InputExpression extends React.Component {
   render() {
@@ -14,23 +15,36 @@ class InputExpression extends React.Component {
   }
 }
 
-class Node extends React.Component {
+class Tree extends React.Component {
   render() {
+    const children = [];
+    this.props.currentNode.children.forEach((node) => {
+      children.push(
+        <Tree 
+          currentNode={node}/>
+      );
+    });
+
     return (
-      <div>{this.props.expression}</div>
+      <div className="Tree">
+        {this.props.currentNode.text}
+        <div>{children}</div>
+      </div>
     );
   }
 }
 
 class Result extends React.Component {
   render() {
-    const rows = [];
-
-    return (
-      <table>
-        <tbody>{rows}</tbody>
-      </table>
-    );
+    if (this.props.invalidExpression) {
+      return (
+        <div className="Result">{"not a wff"}</div>
+      );
+    } else {
+      return (
+        <div className="Result"><Tree currentNode={this.props.expression}/></div>
+      );
+    }
   }
 }
 
@@ -82,15 +96,36 @@ class Header extends React.Component {
 }
 
 class App extends React.Component {
+  /*
+    When we enter a valid WFF:
+      Build a tree using a class called Node
+      Pass this tree to Result component
+        Result component will walk through the tree Node:
+          Make a component Expression which will walk the tree:
+            <Experssion expression={this.node.expression} currentNode={this.node}/>
+  */
   render() {
+
+    const example = new Expression('((A ^ B) > C)', '>', 
+                          [
+                            new Expression('(A ^ B)', '^', [
+                              new Expression('A', 'A', []),
+                              new Expression('B', 'B', []),
+                            ]),
+                            new Expression('C', 'C', [])
+                          ]);
+
     return (
       <div className="App">
         <Header />
         <Information />
         <InputExpression />
+        <Result invalidExpression={false} expression={example}/>
       </div>
     );
   }
 }
+
+
 
 export default App;
