@@ -1,12 +1,26 @@
 import React from "react";
 import "./style.css";
 import { Expression } from './expression.js';
+import { buildExpressionTree } from './expression-tree-builder.js';
 
-class InputExpression extends React.Component {
+class InputExpressionBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange(e) {
+    this.props.onHandleInputChange(e.target.value);
+  }
+
   render() {
     return (
      <form>
-        <input type="text" placeholder="enter expression..." />
+        <input 
+          type="text" 
+          placeholder="enter expression..." 
+          onChange={this.handleInputChange}
+          />
         <p>
           <button type="button">enter</button> 
         </p>
@@ -20,8 +34,7 @@ class Tree extends React.Component {
     const children = [];
     this.props.currentNode.children.forEach((node) => {
       children.push(
-        <Tree 
-          currentNode={node}/>
+        <Tree currentNode={node}/>
       );
     });
 
@@ -48,11 +61,10 @@ class Result extends React.Component {
       return (
         <div className="Result">{"not a wff"}</div>
       );
-    } else {
-      return (
-        <div className="Result"><Tree currentNode={this.props.expression}/></div>
-      );
-    }
+    } 
+    return (
+      <div className="Result"><Tree currentNode={this.props.expression}/></div>
+    );
   }
 }
 
@@ -112,6 +124,27 @@ class App extends React.Component {
           Make a component Expression which will walk the tree:
             <Experssion expression={this.node.expression} currentNode={this.node}/>
   */
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      expressionText: '',
+      invalidExpression: false,
+      expressionTree: null
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange(expression) {
+    let expressionTree;
+
+    expressionTree = buildExpressionTree(expression);
+    this.setState({
+      expressionText: expression
+    });
+  }
+
   render() {
 
     const example = new Expression('((A ^ B) > C)', '>', 
@@ -127,7 +160,7 @@ class App extends React.Component {
       <div className="App">
         <Header />
         <Information />
-        <InputExpression />
+        <InputExpressionBar onHandleInputChange={this.handleInputChange}/>
         <Result invalidExpression={false} expression={example}/>
       </div>
     );
