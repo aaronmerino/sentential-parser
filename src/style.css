@@ -1,4 +1,49 @@
+input {
+  display: block;
+  width: 95%;
+  height: 95%;
+  padding: 5x;
+}
+
+ul {
+  padding-left: 5px;
+  margin-left: 1em;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-left: 1px solid rgb(0, 0, 0);
+}
+
 .App {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
   margin: 2rem;
+  gap: 0.5em;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.Header {
+  grid-column: 1 / 3;
+  grid-row: 1;
+}
+
+.Information {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.InputExpressionBar {
+  grid-column: 1 / 3;
+  grid-row: 3;
+}
+
+
+
+.Result {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+
+.Tree {
+  list-style-type: none;
 }

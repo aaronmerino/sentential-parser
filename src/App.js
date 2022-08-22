@@ -15,15 +15,15 @@ class InputExpressionBar extends React.Component {
 
   render() {
     return (
-     <form>
+     <form className="InputExpressionBar">
         <input 
           type="text" 
           placeholder="enter expression..." 
           onChange={this.handleInputChange}
           />
-        <p>
+        {/* <p>
           <button type="button">enter</button> 
-        </p>
+        </p> */}
       </form>
     );
   }
@@ -111,10 +111,10 @@ class Information extends React.Component {
 class Header extends React.Component {
   render() {
     return (
-      <div className="Header">
+      <header className="Header">
         <h1> Sentential Logic Parser </h1>
         <p>By Aaron Merino</p>
-      </div>
+      </header>
     );
   }
 }
