@@ -65,7 +65,9 @@ class Result extends React.Component {
       );
     } 
     return (
-      <ul className="Result"><Tree currentNode={this.props.expression}/></ul>
+      <div className="Result">
+        <ul><Tree currentNode={this.props.expression}/></ul>
+      </div>
     );
   }
 }
