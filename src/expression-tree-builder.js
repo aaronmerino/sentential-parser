@@ -21,6 +21,9 @@ function buildExpressionTree(expression) {
           generate its children expresions and push them into stack
 
   */
+  let leavesStack = [];
+  let bracketsStack = [];
+  
 }
 
 export {buildExpressionTree};
