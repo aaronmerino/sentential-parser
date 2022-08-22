@@ -127,41 +127,60 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
+    const example = new Expression('((A ^ B) > C)', '>', 
+    [
+      new Expression('(A ^ B)', '^', [
+        new Expression('A', 'A', []),
+        new Expression('B', 'B', []),
+      ]),
+      new Expression('C', 'C', [])
+    ]);
+
     this.state = {
       expressionText: '',
       invalidExpression: false,
-      expressionTree: null
+      expressionTree: example
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   handleInputChange(expression) {
-    let expressionTree;
+    let tree;
+    const example = new Expression('((A ^ B) > C)', '>', 
+                                      [
+                                        new Expression('(A ^ B)', '^', [
+                                          new Expression('A', 'A', []),
+                                          new Expression('B', 'B', []),
+                                        ]),
+                                        new Expression('C', 'C', [])
+                                      ]);
+    // tree = buildExpressionTree(expression);
+    tree = example;
+                            
 
-    expressionTree = buildExpressionTree(expression);
-    this.setState({
-      expressionText: expression
-    });
+    if (tree) {
+      this.setState({
+        expressionText: expression,
+        expressionTree: tree
+      });
+    } else {
+      this.setState({
+        invalidExpression: true
+      });
+    }
+    
   }
 
   render() {
 
-    const example = new Expression('((A ^ B) > C)', '>', 
-                          [
-                            new Expression('(A ^ B)', '^', [
-                              new Expression('A', 'A', []),
-                              new Expression('B', 'B', []),
-                            ]),
-                            new Expression('C', 'C', [])
-                          ]);
 
     return (
       <div className="App">
         <Header />
         <Information />
         <InputExpressionBar onHandleInputChange={this.handleInputChange}/>
-        <Result invalidExpression={false} expression={example}/>
+        <Result invalidExpression={this.state.invalidExpression} expression={this.state.expressionTree}/>
       </div>
     );
   }
