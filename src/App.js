@@ -127,19 +127,19 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    const example = new Expression('((A ^ B) > C)', '>', 
-    [
-      new Expression('(A ^ B)', '^', [
-        new Expression('A', 'A', []),
-        new Expression('B', 'B', []),
-      ]),
-      new Expression('C', 'C', [])
-    ]);
+    // const example = new Expression('((A ^ B) > C)', '>', 
+    // [
+    //   new Expression('(A ^ B)', '^', [
+    //     new Expression('A', 'A', []),
+    //     new Expression('B', 'B', []),
+    //   ]),
+    //   new Expression('C', 'C', [])
+    // ]);
 
     this.state = {
       expressionText: '',
-      invalidExpression: false,
-      expressionTree: example
+      invalidExpression: true,
+      expressionTree: null
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -147,29 +147,19 @@ class App extends React.Component {
 
   handleInputChange(expression) {
     let tree;
-    const example = new Expression('((A ^ B) > C)', '>', 
-                                      [
-                                        new Expression('(A ^ B)', '^', [
-                                          new Expression('A', 'A', []),
-                                          new Expression('B', 'B', []),
-                                        ]),
-                                        new Expression('C', 'C', [])
-                                      ]);
-    // tree = buildExpressionTree(expression);
-    tree = example;
-                            
+    tree = buildExpressionTree(expression);
 
-    if (tree) {
-      this.setState({
-        expressionText: expression,
-        expressionTree: tree
-      });
-    } else {
+    if (!tree) {
       this.setState({
         invalidExpression: true
       });
+    } else {
+      this.setState({
+        expressionText: tree.text,
+        expressionTree: tree,
+        invalidExpression: false
+      });
     }
-    
   }
 
   render() {

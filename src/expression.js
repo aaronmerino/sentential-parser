@@ -20,6 +20,14 @@ class Expression {
   get children() {
     return this.#children;
   }
+
+  set mainConnective(s) {
+    this.#mainConnective = s;
+  }
+
+  addChild(o) {
+    this.#children.push(o);
+  }
 }
 
 export { Expression };
