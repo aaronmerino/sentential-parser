@@ -40,17 +40,19 @@ class Tree extends React.Component {
 
     if (children.length > 0) {
       return (
-        <div className="Tree">
+        <li className="Tree">
           {this.props.currentNode.text}
-          <div>{children}</div>
-        </div>
+          <ul>
+            {children}
+          </ul>
+        </li>
       );
     }
 
     return (
-      <div className="Tree">
+      <li className="Tree">
         {this.props.currentNode.text}
-      </div>
+      </li>
     );
   }
 }
@@ -63,7 +65,7 @@ class Result extends React.Component {
       );
     } 
     return (
-      <div className="Result"><Tree currentNode={this.props.expression}/></div>
+      <ul className="Result"><Tree currentNode={this.props.expression}/></ul>
     );
   }
 }
@@ -75,7 +77,7 @@ class InformationSymbols extends React.Component {
     return (
       <div>
         <h3>Symbols</h3>
-        <h4>{'v, ^, >, =, ~'}</h4>
+        <h4>{'|, &, >, -, ~'}</h4>
       </div>
     );
   }

@@ -137,13 +137,14 @@ function buildExpressionTree(expression) {
 
       }
 
-      if (!foundLeftConstituent || !foundRightConstituent) {
+      if (!foundLeftConstituent || !foundRightConstituent || !foundLastRightBracket) {
         return false;
       }
       let leftNode = new Expression(leftConstituent, '', []);
       let rightNode = new Expression(rightConstituent, '', []);
       currentNode.children.push(leftNode);
       currentNode.children.push(rightNode);
+      currentNode.mainConnective = mainConnective;
       leavesStack.push(leftNode);
       leavesStack.push(rightNode);
     }

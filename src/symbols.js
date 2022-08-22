@@ -15,7 +15,9 @@ const LETTERS = {
   'D': true,
   'E': true,
   'F': true,
-  'G': true
+  'G': true,
+  'H': true,
+  'I': true
 };
 
 export {SYMBOLS, LETTERS};
