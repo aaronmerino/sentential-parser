@@ -79,7 +79,7 @@ class InformationSymbols extends React.Component {
     return (
       <div>
         <h3>Symbols</h3>
-        <h4>{'|, &, >, -, ~'}</h4>
+        <h4>{'(, ), |, &, >, -, ~'}</h4>
       </div>
     );
   }
@@ -100,8 +100,8 @@ class Information extends React.Component {
   render() {
     return (
       <div className="Information">
-        <div><InformationSymbols/></div>
-        <div><InformationLetters/></div>
+        <InformationSymbols/>
+        <InformationLetters/>
       </div>
     );
   }
