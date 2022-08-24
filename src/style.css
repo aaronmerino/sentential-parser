@@ -9,13 +9,23 @@ input {
   padding: 5px;
 }
 
-ul {
+.Result ul {
   
   padding: 5px 5px 5px 5px;
   margin-left: 1em;
   /* width: 50%; */
   /* border-left: 1px dotted rgb(0, 0, 0); */
   background-color:#10454F;
+}
+
+.Result li{
+  background-color:#506266;
+  color: white;
+  transition: 0.1s ease-in-out;
+}
+.Result li:hover{
+  background-color: #BDE038;
+  color: #4b4b4b;
 }
 
 li {
@@ -41,6 +51,10 @@ li {
   grid-row: 1;
   background-color: #BDE038;
   color: #4b4b4b;
+}
+
+.Header p {
+  margin: 0;
 }
 
 .Information {
