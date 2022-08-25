@@ -85,11 +85,26 @@ class InformationSymbols extends React.Component {
   }
 }
 
-class InformationLetters extends React.Component {
+class InformationRulesOfFormation extends React.Component {
   render() {
     return (
       <div>
-        <h3>Letters</h3>
+      <h3>Rules of formation:</h3>
+      <ol>
+        <li>Sentence Symbols are WFF</li>
+        <li>if k and m are WFFs, so are (k|m), (k&m), (k>m), (k-m), (~k)</li>
+        <li>nothing else is a WFF</li>
+      </ol>
+    </div>
+    );
+  }
+}
+
+class InformationSentences extends React.Component {
+  render() {
+    return (
+      <div>
+        <h3>Sentences</h3>
         <h4>{'A, B, C, D, E, F, G, H, I'}</h4>
       </div>
     );
@@ -101,7 +116,8 @@ class Information extends React.Component {
     return (
       <div className="Information">
         <InformationSymbols/>
-        <InformationLetters/>
+        <InformationSentences/>
+        <InformationRulesOfFormation/>
       </div>
     );
   }
