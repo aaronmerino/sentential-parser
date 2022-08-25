@@ -48,7 +48,64 @@ function buildExpressionTree(expression) {
     // Check second char
     if (currentNode.text[1] === '~') {
       let remainingText = currentNode.text.substring(2);
+      let leftBracketsStack = [];
       let constituent = '';
+      let foundConstituent = false;
+      let foundLastRightBracket = false;
+
+      for (const c of remainingText) {
+        if (!SYMBOLS[c] && !LETTERS[c]) {
+          return false;
+        }
+        
+        if (foundLastRightBracket) {
+          return false;
+        }
+
+        if (foundConstituent && !foundLastRightBracket) {
+          if (c !== ')') {
+            return false;
+          }
+          foundLastRightBracket = true;
+          continue;
+        }
+
+        
+        constituent += c;
+        
+
+        if (c === '(') {
+          // push into leftBracketsStack
+          leftBracketsStack.push(c);
+        } else if (c === ')') {
+          // pop from leftBracketsStack
+          let res = leftBracketsStack.pop();
+
+          if (!res) {
+            return false;
+          }
+
+          if (leftBracketsStack.length == 0) {
+            // found constituent
+            foundConstituent = true;
+          }
+        } else { // c is a letter
+          if (leftBracketsStack.length != 0) {
+            continue;
+          }
+          foundConstituent = true;
+        }
+      }
+
+      if (!foundConstituent || !foundLastRightBracket) {
+        return false;
+      }
+      let node = new Expression(constituent, '', []);
+      console.log("we push node: " + constituent);
+      currentNode.children.push(node);
+      currentNode.mainConnective = '~';
+
+      leavesStack.push(node);
 
     } else {
       let remainingText = currentNode.text.substring(1);
@@ -63,8 +120,8 @@ function buildExpressionTree(expression) {
       let foundLastRightBracket = false;
 
       for (const c of remainingText) {
-        console.log();
-        console.log(c);
+        // console.log();
+        // console.log(c);
         if (!SYMBOLS[c] && !LETTERS[c]) {
           return false;
         }
@@ -78,7 +135,7 @@ function buildExpressionTree(expression) {
             return false;
           }
           foundLastRightBracket = true;
-          console.log('found last right bracket')
+          // console.log('found last right bracket')
           continue;
         }
 
@@ -88,7 +145,7 @@ function buildExpressionTree(expression) {
           } 
 
           foundMainConnective = true;
-          console.log('found main connective');
+          // console.log('found main connective');
           mainConnective = c;
           continue;
         }
@@ -114,10 +171,10 @@ function buildExpressionTree(expression) {
             // found constituent
             if (!foundLeftConstituent) {
               foundLeftConstituent = true;
-              console.log('found left constituent');
+              // console.log('found left constituent');
             } else {
               foundRightConstituent = true;
-              console.log('found right constituent');
+              // console.log('found right constituent');
             }
           }
         } else { // c is a letter
@@ -127,10 +184,10 @@ function buildExpressionTree(expression) {
 
           if (!foundLeftConstituent) {
             foundLeftConstituent = true;
-            console.log('found left constituent');
+            // console.log('found left constituent');
           } else {
             foundRightConstituent = true;
-            console.log('found right constituent');
+            // console.log('found right constituent');
           }
         }
 
@@ -142,6 +199,7 @@ function buildExpressionTree(expression) {
       }
       let leftNode = new Expression(leftConstituent, '', []);
       let rightNode = new Expression(rightConstituent, '', []);
+      console.log("we push left node: " + leftConstituent + ", we push right node: " + rightConstituent);
       currentNode.children.push(leftNode);
       currentNode.children.push(rightNode);
       currentNode.mainConnective = mainConnective;
