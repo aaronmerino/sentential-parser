@@ -39,16 +39,29 @@ class Tree extends React.Component {
     });
 
     if (children.length > 0) {
+      if (children.length == 2) {
+        let leftExpression = this.props.currentNode.children[0];
+        let rightExpression = this.props.currentNode.children[1];
+        return (
+          <li className="Tree">
+            {'(' + leftExpression.text}<span className="highlight">{this.props.currentNode.mainConnective}</span>{rightExpression.text + ')'}
+            <ul>
+              {children}
+            </ul>
+          </li>
+        );
+      }
+      
       return (
         <li className="Tree">
-          {this.props.currentNode.text}
+          {'('}<span className="highlight">{'~'}</span>{this.props.currentNode.children[0].text + ')'}
           <ul>
             {children}
           </ul>
         </li>
       );
     }
-
+    
     return (
       <li className="Tree">
         {this.props.currentNode.text}
