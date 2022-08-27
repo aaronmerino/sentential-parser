@@ -124,6 +124,21 @@ class InformationSentences extends React.Component {
   }
 }
 
+class InformationExampleWFFs extends React.Component {
+  render() {
+    return (
+      <div>
+        <h3>Examples:</h3>
+        <ol>
+          <li>A</li>
+          <li>(A|B)</li>
+          <li>(A|(C&D))</li>
+      </ol>
+      </div>
+    );
+  }
+}
+
 class Information extends React.Component {
   render() {
     return (
@@ -131,6 +146,7 @@ class Information extends React.Component {
         <InformationSymbols/>
         <InformationSentences/>
         <InformationRulesOfFormation/>
+        <InformationExampleWFFs/>
       </div>
     );
   }
