@@ -1,19 +1,15 @@
-/* #10454F
+/* 
+#BDE038
+#10454F
 #506266
 #818274
 #A3AB78 */
 
-
-html, body, #root { 
-  height: 100%; 
+body { 
+  /* height: 100vh; */
+  background-color: white;
 }
 
-input {
-  display: block;
-  /* width: 100%;
-  height: 95%; */
-  padding: 5px;
-}
 
 .highlight {
   border-radius: 5px;
@@ -23,7 +19,6 @@ input {
 }
 
 .Result ul {
-  
   padding: 5px 5px 5px 5px;
   margin-left: 1em;
   /* width: 50%; */
@@ -43,9 +38,9 @@ input {
 
 li {
   border-radius: 10px;
-  padding: 4em 0 0 5px;
+  padding: 2em 0 0 5px;
   background-color: #506266;
-  height: 100%;
+  /* height: 100%; */
   margin: 0.5em;
 }
 
@@ -54,10 +49,14 @@ li {
   grid-template-columns: 1fr 3fr;
   /* grid-template-rows: 1fr 1fr 3fr; */
   margin: 0 auto;
-  /* height: 100%; */
+  /* height: 100vh; */
   gap: 0.2em;
   font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
   font-weight:bold;
+}
+
+.Header .Information .Result .InputExpressionBar {
+  min-height: 0px;
 }
 
 .Header {
@@ -74,7 +73,8 @@ li {
 .Information {
   grid-column: 1;
   grid-row: 2;
-  border-right: 1px solid rgb(0, 0, 0);
+  border-right: 2px solid #d8d8d8;
+  /* border-bottom: 2px solid #BDE038; */
   padding: 0.5em;
   background-color: #10454F;
   color: white;
@@ -83,6 +83,15 @@ li {
 .InputExpressionBar {
   grid-column: 2 / 3;
   grid-row: 3;
+  width: 100%;
+}
+
+
+input {
+  display: block;
+  height: 95%;
+  padding: 5px;
+  width: calc(100% - 15px);
 }
 
 
@@ -91,7 +100,9 @@ li {
   grid-row: 2;
   padding: 1em;
   background-color: #10454F;
+  /* border-bottom: 2px solid #BDE038; */
   color: white;
+  /* overflow: auto; */
 }
 
 

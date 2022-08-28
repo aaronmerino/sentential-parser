@@ -85,30 +85,31 @@ class Result extends React.Component {
   }
 }
 
-
+class InformationRulesOfFormation extends React.Component {
+  render() {
+    return (
+      <div>
+        <h3>Rules of formation</h3>
+        <ol>
+          <li>Sentence Symbols are WFFs</li>
+          <li>If k and m are WFFs, so are (k|m), (k&m), (k>m), (k-m), (~k)</li>
+          <li>Nothing else is a WFF</li>
+        </ol>
+      </div>
+    );
+  }
+}
 
 class InformationSymbols extends React.Component {
   render() {
     return (
       <div>
         <h3>Symbols</h3>
-        <h4>{'(, ), |, &, >, -, ~'}</h4>
+        <ul>
+          <li>{'(, ), |, &, >, -, ~'}</li>
+        </ul>
+        {/* <h4>{'(, ), |, &, >, -, ~'}</h4> */}
       </div>
-    );
-  }
-}
-
-class InformationRulesOfFormation extends React.Component {
-  render() {
-    return (
-      <div>
-      <h3>Rules of formation:</h3>
-      <ol>
-        <li>Sentence Symbols are WFFs</li>
-        <li>If k and m are WFFs, so are (k|m), (k&m), (k>m), (k-m), (~k)</li>
-        <li>Nothing else is a WFF</li>
-      </ol>
-    </div>
     );
   }
 }
@@ -118,7 +119,10 @@ class InformationSentences extends React.Component {
     return (
       <div>
         <h3>Sentences</h3>
-        <h4>{'A, B, C, D, E, F, G, H, I'}</h4>
+        <ul>
+          <li>{'A, B, C, D, E, F, G, H, I'}</li>
+        </ul>
+        {/* <h4>{'A, B, C, D, E, F, G, H, I'}</h4> */}
       </div>
     );
   }
@@ -128,12 +132,12 @@ class InformationExampleWFFs extends React.Component {
   render() {
     return (
       <div>
-        <h3>Examples:</h3>
+        <h3>Examples</h3>
         <ol>
           <li>A</li>
           <li>(A|B)</li>
           <li>(A|(C&D))</li>
-      </ol>
+        </ol>
       </div>
     );
   }
