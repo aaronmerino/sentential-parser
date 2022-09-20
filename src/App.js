@@ -97,7 +97,7 @@ class InformationRulesOfFormation extends React.Component {
         <h3>Rules of formation</h3>
         <ol>
           <li>Sentence Symbols are WFFs</li>
-          <li>If k and m are WFFs, so are (k|m), (k&m), (k>m), (k-m), (~k)</li>
+          <li>If k and m are WFFs, so are (k|m), (k&m), (k{">"}m), (k-m), (~k)</li>
           <li>Nothing else is a WFF</li>
         </ol>
       </div>
