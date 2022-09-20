@@ -7,15 +7,20 @@ class InputExpressionBar extends React.Component {
   constructor(props) {
     super(props);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInputChange(e) {
     this.props.onHandleInputChange(e.target.value);
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+  }
+
   render() {
     return (
-     <form className="InputExpressionBar">
+     <form className="InputExpressionBar" onSubmit={this.handleSubmit}>
         <input 
           type="text" 
           placeholder="enter expression..." 
